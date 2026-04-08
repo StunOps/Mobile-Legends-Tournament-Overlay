@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, initial-scale=1">
+  <title>ML Live — In-Game Overlay</title>
+  <link rel="stylesheet" href="/css/ingame.css">
+</head>
+
+<body>
+  <div class="ig-overlay">
+
+    <!-- ===== TEAM 1 — Left Side ===== -->
+    <!-- Org Logo (small, top-left corner near the bar) -->
+    <img class="ig-team1-org" id="igTeam1Org" src="" alt="">
+    <!-- Team Logo (larger, below org logo) -->
+    <img class="ig-team1-logo" id="igTeam1Logo" src="" alt="">
+    <!-- Team Name -->
+    <div class="ig-team1-name" id="igTeam1Name">TEAM 1</div>
+    <!-- Standings Circles (BO3 = 3 circles, BO5 = 5 circles) -->
+    <div class="ig-team1-standings" id="igTeam1Standings">
+      <span class="ig-circle"></span>
+      <span class="ig-circle"></span>
+      <span class="ig-circle"></span>
+    </div>
+
+    <!-- ===== E-FEST LOGO — Center ===== -->
+    <img class="ig-efest-logo" src="/assets/E-Fest Logo3.png" alt="E-Fest">
+    <div class="ig-efest-shine"></div>
+
+    <!-- ===== TEAM 2 — Right Side ===== -->
+    <!-- Team Name -->
+    <div class="ig-team2-name" id="igTeam2Name">TEAM 2</div>
+    <!-- Standings Circles -->
+    <div class="ig-team2-standings" id="igTeam2Standings">
+      <span class="ig-circle"></span>
+      <span class="ig-circle"></span>
+      <span class="ig-circle"></span>
+    </div>
+    <!-- Team Logo -->
+    <img class="ig-team2-logo" id="igTeam2Logo" src="" alt="">
+    <!-- Org Logo -->
+    <img class="ig-team2-org" id="igTeam2Org" src="" alt="">
+
+    <!-- ===== ROUND / DAY / BEST OF — Top Right ===== -->
+    <div class="ig-match-info">
+      <div class="ig-round" id="igRound">D-PLAYOFFS</div>
+      <div class="ig-day" id="igDay">DAY1</div>
+      <div class="ig-bestof" id="igBestOf">BEST OF 3</div>
+    </div>
+
+    <!-- ===== SPONSORS — Far Right Corner ===== -->
+    <div class="ig-sponsors" id="igSponsors"></div>
+
+  </div>
+  <script src="/js/ingame.js"></script>
+</body>
+
+</html>

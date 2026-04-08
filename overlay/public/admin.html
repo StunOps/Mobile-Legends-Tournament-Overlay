@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Live — Admin Control Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #F7941D;
+      --orange-dark: #D97B00;
+      --black: #1A1A1A;
+      --dark: #2D2D2D;
+      --darker: #141414;
+      --grey: #3a3a3a;
+      --white: #F2F2F2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Oswald', sans-serif;
+      background: var(--darker);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .admin-header {
+      background: var(--black);
+      border-bottom: 3px solid var(--orange);
+      padding: 16px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .admin-header h1 {
+      font-size: 24px; letter-spacing: 4px; color: var(--orange);
+    }
+    .admin-header .save-btn {
+      background: var(--orange); color: var(--black); border: none;
+      padding: 10px 28px; font-size: 16px; font-weight: 700;
+      letter-spacing: 2px; cursor: pointer; font-family: inherit;
+      transition: background 0.2s;
+    }
+    .admin-header .save-btn:hover { background: var(--orange-dark); }
+
+    /* Tabs */
+    .tabs {
+      display: flex; background: var(--black); border-bottom: 1px solid var(--grey);
+    }
+    .tab {
+      padding: 12px 32px; font-size: 15px; letter-spacing: 2px;
+      color: #888; cursor: pointer; border-bottom: 3px solid transparent;
+      transition: all 0.2s; font-family: inherit; background: none; border-top: none; border-left: none; border-right: none;
+    }
+    .tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+    .tab:hover { color: var(--white); }
+
+    /* Content */
+    .tab-content { display: none; padding: 24px 32px; }
+    .tab-content.active { display: block; }
+
+    /* Form Groups */
+    .form-section {
+      background: var(--dark); padding: 20px; margin-bottom: 18px;
+      border-left: 4px solid var(--orange);
+    }
+    .form-section h3 {
+      font-size: 16px; letter-spacing: 3px; color: var(--orange);
+      margin-bottom: 14px;
+    }
+    .form-row {
+      display: flex; gap: 14px; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .form-field {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .form-field label {
+      font-size: 11px; letter-spacing: 2px; color: #888; text-transform: uppercase;
+    }
+    .form-field input[type="text"] {
+      background: var(--black); border: 1px solid var(--grey); color: var(--white);
+      padding: 8px 12px; font-size: 14px; font-family: inherit;
+      min-width: 160px;
+    }
+    .form-field input[type="text"]:focus {
+      outline: none; border-color: var(--orange);
+    }
+    .form-field input[type="file"] { font-size: 12px; color: #888; }
+
+    .form-field select {
+      background: var(--black); border: 1px solid var(--grey); color: var(--white);
+      padding: 8px 12px; font-size: 14px; font-family: inherit;
+    }
+
+    /* Preview area */
+    .preview-label {
+      font-size: 11px; letter-spacing: 2px; color: #888; margin-bottom: 6px;
+    }
+    .preview-img {
+      max-width: 60px; max-height: 60px; object-fit: contain;
+      background: var(--black); border: 1px solid var(--grey); padding: 4px;
+    }
+
+    /* Team cards */
+    .team-card-admin {
+      background: var(--black); padding: 16px; margin-bottom: 12px;
+      border: 1px solid var(--grey); position: relative;
+    }
+    .team-card-admin h4 {
+      font-size: 14px; color: var(--orange); margin-bottom: 12px; letter-spacing: 2px;
+    }
+    .members-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+
+    /* Action buttons */
+    .btn-add {
+      background: transparent; border: 2px dashed var(--grey); color: #888;
+      padding: 10px 20px; font-size: 13px; cursor: pointer; font-family: inherit;
+      letter-spacing: 2px; transition: all 0.2s; width: 100%;
+    }
+    .btn-add:hover { border-color: var(--orange); color: var(--orange); }
+
+    .btn-remove {
+      background: #c0392b; color: white; border: none; padding: 4px 10px;
+      font-size: 11px; cursor: pointer; position: absolute; top: 8px; right: 8px;
+      font-family: inherit; letter-spacing: 1px;
+    }
+    .btn-remove:hover { background: #e74c3c; }
+
+    /* Sponsor item */
+    .sponsor-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--black); padding: 10px 14px; margin-bottom: 8px;
+      border: 1px solid var(--grey); position: relative;
+    }
+    .sponsor-item img { height: 50px; object-fit: contain; }
+    .sponsor-item .btn-remove { position: static; }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 30px; right: 30px;
+      background: var(--orange); color: var(--black); padding: 12px 28px;
+      font-weight: 700; letter-spacing: 2px; font-size: 14px;
+      transform: translateY(100px); opacity: 0; transition: all 0.3s;
+      z-index: 1000;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* iframe preview */
+    .preview-frame-wrap {
+      margin-top: 16px; border: 2px solid var(--grey); position: relative;
+      width: 100%; max-width: 960px; aspect-ratio: 16/9; overflow: hidden;
+      background: #000;
+    }
+    .preview-frame-wrap iframe {
+      width: 1920px; height: 1080px;
+      transform: scale(0.5); transform-origin: top left;
+      border: none; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-header">
+    <h1>🎛️ ML LIVE — CONTROL PANEL</h1>
+    <button class="save-btn" onclick="saveAll()">💾 SAVE &amp; UPDATE</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="initial">INITIAL OVERLAY</button>
+    <button class="tab" data-tab="ingame">IN-GAME OVERLAY</button>
+    <button class="tab" data-tab="interview">INTERVIEW OVERLAY</button>
+  </div>
+
+  <!-- ===== INITIAL TAB ===== -->
+  <div class="tab-content active" id="tab-initial">
+
+    <!-- Event Info -->
+    <div class="form-section">
+      <h3>📅 EVENT INFO</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Day</label>
+          <input type="text" id="inp-day" value="DAY 1" placeholder="e.g. DAY 1">
+        </div>
+        <div class="form-field">
+          <label>Round / Stage</label>
+          <input type="text" id="inp-round" value="PLAYOFFS" placeholder="e.g. PLAYOFFS">
+        </div>
+      </div>
+    </div>
+
+    <!-- Teams -->
+    <div class="form-section">
+      <h3>👥 PARTICIPATING TEAMS</h3>
+      <div id="teams-container"></div>
+      <button class="btn-add" onclick="addTeam()">+ ADD TEAM</button>
+    </div>
+
+    <!-- Upcoming Matches -->
+    <div class="form-section">
+      <h3>⚔️ UPCOMING MATCHES (3 max)</h3>
+      <div id="matches-container"></div>
+    </div>
+
+    <!-- Sponsors -->
+    <div class="form-section">
+      <h3>💰 SPONSORS</h3>
+      <div id="sponsors-container"></div>
+      <div class="form-row" style="margin-top:10px;">
+        <div class="form-field">
+          <label>Add Sponsor Logo</label>
+          <input type="file" id="sponsor-upload" accept="image/*">
+        </div>
+        <button class="btn-add" style="width:auto;padding:8px 20px;" onclick="uploadSponsor()">+ ADD</button>
+      </div>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="form-section">
+      <h3>📺 LIVE PREVIEW</h3>
+      <div class="preview-frame-wrap">
+        <iframe src="/initial.html" id="previewFrame"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== IN-GAME TAB ===== -->
+  <div class="tab-content" id="tab-ingame">
+
+    <!-- Match Settings -->
+    <div class="form-section">
+      <h3>⚙️ MATCH SETTINGS</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Round / Stage</label>
+          <input type="text" id="ig-inp-round" value="D-PLAYOFFS" placeholder="e.g. D-PLAYOFFS">
+        </div>
+        <div class="form-field">
+          <label>Day</label>
+          <input type="text" id="ig-inp-day" value="DAY1" placeholder="e.g. DAY1">
+        </div>
+        <div class="form-field">
+          <label>Best Of</label>
+          <select id="ig-inp-bestof">
+            <option value="3">Best of 3</option>
+            <option value="5">Best of 5</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team 1 -->
+    <div class="form-section">
+      <h3>🔵 TEAM 1 (LEFT / BLUE SIDE)</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Select Team</label>
+          <select id="ig-team1-select" onchange="igSelectTeam(1)">
+            <option value="">-- Pick a team --</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Or type name manually</label>
+          <input type="text" id="ig-team1-name" value="" placeholder="Team name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Team Logo</label>
+          <input type="file" id="ig-team1-logo-file" accept="image/*">
+          <img src="" class="preview-img" id="ig-team1-logo-preview">
+        </div>
+        <div class="form-field">
+          <label>Organization Logo</label>
+          <input type="file" id="ig-team1-org-file" accept="image/*">
+          <img src="" class="preview-img" id="ig-team1-org-preview">
+        </div>
+      </div>
+      <div class="form-row" style="align-items:center;">
+        <div class="form-field">
+          <label>Wins</label>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button class="btn-add" style="width:40px;padding:6px;" onclick="igAdjustWins(1, -1)">−</button>
+            <span id="ig-team1-wins" style="font-size:24px;color:var(--orange);min-width:30px;text-align:center;">0</span>
+            <button class="btn-add" style="width:40px;padding:6px;" onclick="igAdjustWins(1, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team 2 -->
+    <div class="form-section">
+      <h3>🔴 TEAM 2 (RIGHT / RED SIDE)</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Select Team</label>
+          <select id="ig-team2-select" onchange="igSelectTeam(2)">
+            <option value="">-- Pick a team --</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Or type name manually</label>
+          <input type="text" id="ig-team2-name" value="" placeholder="Team name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Team Logo</label>
+          <input type="file" id="ig-team2-logo-file" accept="image/*">
+          <img src="" class="preview-img" id="ig-team2-logo-preview">
+        </div>
+        <div class="form-field">
+          <label>Organization Logo</label>
+          <input type="file" id="ig-team2-org-file" accept="image/*">
+          <img src="" class="preview-img" id="ig-team2-org-preview">
+        </div>
+      </div>
+      <div class="form-row" style="align-items:center;">
+        <div class="form-field">
+          <label>Wins</label>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button class="btn-add" style="width:40px;padding:6px;" onclick="igAdjustWins(2, -1)">−</button>
+            <span id="ig-team2-wins" style="font-size:24px;color:var(--orange);min-width:30px;text-align:center;">0</span>
+            <button class="btn-add" style="width:40px;padding:6px;" onclick="igAdjustWins(2, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="form-section">
+      <h3>⚡ QUICK ACTIONS</h3>
+      <div class="form-row">
+        <button class="btn-add" style="width:auto;padding:10px 24px;border-color:var(--orange);color:var(--orange);" onclick="igResetWins()">🔄 RESET WINS</button>
+        <button class="btn-add" style="width:auto;padding:10px 24px;border-color:var(--orange);color:var(--orange);" onclick="igSwapTeams()">🔁 SWAP TEAMS</button>
+      </div>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="form-section">
+      <h3>📺 LIVE PREVIEW — IN-GAME</h3>
+      <div class="preview-frame-wrap">
+        <iframe src="/ingame.html" id="igPreviewFrame"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INTERVIEW TAB ===== -->
+  <div class="tab-content" id="tab-interview">
+    <div class="form-section">
+      <h3>🎤 INTERVIEW OVERLAY</h3>
+      <p style="color:#888;font-size:13px;letter-spacing:1px;margin-bottom:12px;">This overlay shares team &amp; score data with the In-Game tab. Update teams and scores from the In-Game tab — they will automatically reflect here.</p>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="form-section">
+      <h3>📺 LIVE PREVIEW — INTERVIEW</h3>
+      <div class="preview-frame-wrap">
+        <iframe src="/interview.html" id="ivPreviewFrame"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">SAVED!</div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

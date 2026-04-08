@@ -1,0 +1,550 @@
+/* ============================================================
+   ML LIVE — IN-GAME OVERLAY STYLES
+   
+   All positions are ABSOLUTE on a 1920×1080 canvas.
+   Adjust the top / left / right / bottom values to fine-tune
+   each element's position on the overlay template.
+   ============================================================ */
+
+@font-face {
+  font-family: "High Speed";
+  src:
+    url("/fonts/HighSpeed.ttf") format("truetype"),
+    url("/fonts/HighSpeed.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&display=swap");
+
+:root {
+  --orange: #f7941d;
+  --gold: #fcb300;
+  --black: #1a1a1a;
+  --white: #ffffff;
+  --font: "High Speed", "Bebas Neue", "Oswald", sans-serif;
+  --blue-team: #2196F3;
+  --red-team: #e53935;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.ig-overlay {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  /* ── Background Template ── */
+  background: url("/assets/In Game Overlay.png") no-repeat top left / 1920px 1080px;
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+/* ============================================================
+   TEAM 1 — LEFT SIDE
+   ============================================================ */
+
+/* ── Team 1 Org Logo (small, top-left corner) ──
+   The small org/college logo that sits at the very top-left
+   near the edge of the bar.
+   ADJUST: top, left, width, height                         */
+.ig-team1-org {
+  position: absolute;
+  top: 5px;
+  /* ← vertical position */
+  left: 400px;
+  /* ← horizontal position */
+  width: 40px;
+  /* ← logo size */
+  height: 40px;
+  object-fit: contain;
+  z-index: 10;
+}
+
+.ig-team1-org[src=""] {
+  display: none;
+}
+
+/* ── Team 1 Logo (larger, team mascot/logo) ──
+   The bigger team logo below the org logo.
+   ADJUST: top, left, width, height                         */
+.ig-team1-logo {
+  position: absolute;
+  top: 50px;
+  /* ← vertical position */
+  left: 380px;
+  /* ← horizontal position */
+  width: 70px;
+  /* ← logo size */
+  height: 70px;
+  object-fit: contain;
+  z-index: 10;
+}
+
+.ig-team1-logo[src=""] {
+  display: none;
+}
+
+/* ── Team 1 Name ──
+   The team name text (e.g. "OG ESPORTS") in the blue area.
+   ADJUST: top, left, width, font-size                      */
+.ig-team1-name {
+  position: absolute;
+  top: 70px;
+  /* ← vertical position */
+  left: 500px;
+  /* ← horizontal position */
+  width: 280px;
+  /* ← max width for text */
+  font-size: 28px;
+  /* ← text size */
+  font-weight: 900;
+  font-style: italic;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  line-height: 1.1;
+  z-index: 10;
+}
+
+/* ── Team 1 Standings Circles ──
+   The BO circles (filled = win) for Team 1.
+   ADJUST: top, left, gap                                   */
+.ig-team1-standings {
+  position: absolute;
+  top: 75px;
+  /* ← vertical position */
+  left: 820px;
+  /* ← horizontal position */
+  display: flex;
+  gap: 8px;
+  /* ← space between circles */
+  z-index: 10;
+}
+
+/* ============================================================
+   TEAM 2 — RIGHT SIDE
+   ============================================================ */
+
+/* ── Team 2 Name ──
+   The team name text in the red area.
+   ADJUST: top, right (or left), width, font-size           */
+.ig-team2-name {
+  position: absolute;
+  top: 70px;
+  /* ← vertical position */
+  left: 1140px;
+  /* ← horizontal position */
+  width: 280px;
+  /* ← max width for text */
+  font-size: 28px;
+  /* ← text size */
+  font-weight: 900;
+  font-style: italic;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  line-height: 1.1;
+  text-align: right;
+  z-index: 10;
+}
+
+/* ── Team 2 Standings Circles ──
+   ADJUST: top, left, gap                                   */
+.ig-team2-standings {
+  position: absolute;
+  top: 75px;
+  /* ← vertical position */
+  left: 1027px;
+  /* ← horizontal position */
+  display: flex;
+  gap: 8px;
+  /* ← space between circles */
+  z-index: 10;
+}
+
+/* ── Team 2 Logo (larger team logo) ──
+   ADJUST: top, left/right, width, height                   */
+.ig-team2-logo {
+  position: absolute;
+  top: 50px;
+  /* ← vertical position */
+  left: 1475px;
+  /* ← horizontal position */
+  width: 70px;
+  /* ← logo size */
+  height: 70px;
+  object-fit: contain;
+  z-index: 10;
+}
+
+.ig-team2-logo[src=""] {
+  display: none;
+}
+
+/* ── Team 2 Org Logo (small, top-right of bar) ──
+   ADJUST: top, left/right, width, height                   */
+.ig-team2-org {
+  position: absolute;
+  top: 5px;
+  /* ← vertical position */
+  left: 1485px;
+  /* ← horizontal position */
+  width: 40px;
+  /* ← logo size */
+  height: 40px;
+  object-fit: contain;
+  z-index: 10;
+}
+
+.ig-team2-org[src=""] {
+  display: none;
+}
+
+/* ============================================================
+   STANDINGS CIRCLES (shared styles)
+   ============================================================ */
+
+/* ── Individual Circle ──
+   Empty = unfilled (just border), .won = filled gold.
+   ADJUST: width, height, border-width, border-color        */
+.ig-circle {
+  display: inline-block;
+  width: 18px;
+  /* ← circle size */
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: transparent;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── Filled (Won) Circle ── */
+.ig-circle.won {
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(252, 179, 0, 0.6);
+}
+
+/* ============================================================
+   E-FEST LOGO — CENTER
+   ============================================================ */
+
+/* ── E-Fest Logo ──
+   The E-Fest gear logo positioned dead-center in the bar.
+   ADJUST: top, left, width, height                         */
+.ig-efest-logo {
+  position: absolute;
+  top: 50px;
+  /* ← vertical position */
+  left: calc(50% - 60px);
+  /* centered horizontally */
+  width: 120px;
+  /* ← logo size */
+  height: 120px;
+  object-fit: contain;
+  z-index: 15;
+  /* The shine overlay is done via a wrapper — see below */
+}
+
+/* ── Shine wrapper ──
+   We use a pseudo-element on the overlay itself to sweep
+   a diagonal light-band across the logo every 4s.        */
+.ig-efest-shine {
+  position: absolute;
+  top: 50px;
+  left: calc(50% - 60px);
+  width: 120px;
+  height: 120px;
+  z-index: 16;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.ig-efest-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 40px;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 30%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.15) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: efestShine 4s ease-in-out 1.6s infinite;
+}
+
+/* ============================================================
+   MATCH INFO — TOP RIGHT CORNER
+   (Round, Day, Best Of)
+   ============================================================ */
+
+/* ── Container ──
+   Wraps round, day, and bestof text.
+   ADJUST: top, right                                       */
+.ig-match-info {
+  position: absolute;
+  top: 15px;
+  /* ← vertical position */
+  right: 205px;
+  /* ← distance from right edge */
+  text-align: left;
+  z-index: 10;
+}
+
+/* ── Round Text (e.g. "D-PLAYOFFS") ──
+   ADJUST: font-size, color, letter-spacing                 */
+.ig-round {
+  font-size: 13px;
+  /* ← text size */
+  font-weight: 900;
+  font-style: italic;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+
+/* ── Day Text (e.g. "DAY1") ──
+   ADJUST: font-size, color                                 */
+.ig-day {
+  font-size: 34px;
+  /* ← text size */
+  font-weight: 900;
+  font-style: italic;
+  color: var(--white);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+
+/* ── Best Of Text (e.g. "BEST OF 3") ──
+   ADJUST: font-size, color                                 */
+.ig-bestof {
+  font-size: 16px;
+  /* ← text size */
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ============================================================
+   SPONSORS — FAR RIGHT
+   ============================================================ */
+
+/* ── Sponsors Container ──
+   Cycling sponsor logos, positioned near the "OFFICIAL SPONSORS"
+   text baked into the template.
+   ADJUST: top, right, width                                */
+.ig-sponsors {
+  position: absolute;
+  top: 45px;
+  /* ← vertical position */
+  right: 5px;
+  /* ← distance from right edge */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  width: 180px;
+  /* ← container width */
+  height: 50px;
+  /* ← container height */
+}
+
+/* ── Individual Sponsor Logo ──
+   ADJUST: max-height, max-width                            */
+.ig-sponsors img {
+  max-height: 50px;
+  /* ← max logo height (smaller for in-game) */
+  max-width: 180px;
+  /* ← max logo width */
+  object-fit: contain;
+}
+
+/* Sponsor Fade Transitions */
+.ig-sponsors img.fade-enter {
+  animation: igSponsorFadeIn 1s ease-out forwards;
+}
+
+.ig-sponsors img.fade-exit {
+  animation: igSponsorFadeOut 1s ease-in forwards;
+}
+
+@keyframes igSponsorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes igSponsorFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+}
+
+/* ============================================================
+   ENTRANCE ANIMATIONS
+   ============================================================ */
+.ig-team1-logo,
+.ig-team1-org,
+.ig-team1-name,
+.ig-team1-standings {
+  animation: igSlideLeft 0.6s ease-out both;
+}
+
+.ig-team2-logo,
+.ig-team2-org,
+.ig-team2-name,
+.ig-team2-standings {
+  animation: igSlideRight 0.6s ease-out both;
+}
+
+.ig-efest-logo {
+  /* Phase 1: Appear (0–1.2s) — scale from 0, fade in with a glow burst */
+  animation:
+    efestAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both,
+    efestFloat  4s   ease-in-out 1.6s infinite;
+}
+
+.ig-efest-shine {
+  animation: efestAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both,
+             efestFloat  4s   ease-in-out 1.6s infinite;
+}
+
+.ig-match-info {
+  animation: igSlideRight 0.6s ease-out 0.2s both;
+}
+
+.ig-sponsors {
+  animation: igFadeIn 0.8s ease-out 0.5s both;
+}
+
+@keyframes igSlideLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes igSlideRight {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes igFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Phase 1: APPEAR ──
+   Logo materialises from nothing with a bright glow burst. */
+@keyframes efestAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+    filter: drop-shadow(0 0 0px rgba(252, 179, 0, 0)) brightness(1);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 30px rgba(252, 179, 0, 0.9)) brightness(1.6);
+  }
+  80% {
+    transform: scale(0.96);
+    filter: drop-shadow(0 0 12px rgba(252, 179, 0, 0.4)) brightness(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(252, 179, 0, 0.2)) brightness(1);
+  }
+}
+
+/* ── Phase 2: FLOAT ──
+   Gentle hovering with a subtle glow pulse. 4s loop. */
+@keyframes efestFloat {
+  0%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 6px rgba(252, 179, 0, 0.15)) brightness(1);
+  }
+  50% {
+    transform: translateY(-6px);
+    filter: drop-shadow(0 0 18px rgba(252, 179, 0, 0.5)) brightness(1.1);
+  }
+}
+
+/* ── Phase 3: SHINE ──
+   A diagonal light-band sweeps across the logo. 4s loop. */
+@keyframes efestShine {
+  0% {
+    left: -80%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  60% {
+    left: 180%;
+    opacity: 1;
+  }
+  70%, 100% {
+    left: 180%;
+    opacity: 0;
+  }
+}

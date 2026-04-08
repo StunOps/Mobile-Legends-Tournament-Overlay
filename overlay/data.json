@@ -1,0 +1,200 @@
+{
+  "event": {
+    "day": "DAY1",
+    "round": "d-playoffs"
+  },
+  "teams": [
+    {
+      "name": "Alejandro's Lechon Manok",
+      "logo": "/assets/logos/1775503976424-no_team.png",
+      "orgLogo": "/assets/logos/1775504150785-COE.png",
+      "members": [
+        "NATSUMI",
+        "YOPAJ",
+        "TIMS",
+        "NIKKO",
+        "SKEM",
+        "adam"
+      ]
+    },
+    {
+      "name": "BIRSIKULO UNO: Poncio Birhilyo",
+      "logo": "/assets/logos/1775503751234-PONCIO_BIRHILYU.png",
+      "orgLogo": "/assets/logos/1775504153982-COE.png",
+      "members": [
+        "Dapskie",
+        "BUTtER",
+        "ilovwru",
+        "Kairo",
+        "Earl'",
+        "SUPER BEJ"
+      ]
+    },
+    {
+      "name": "SAMPUNG UTOS NI TOMAS",
+      "logo": "/assets/logos/1775503527035-SUNITO_-_TEAMLogo.png",
+      "orgLogo": "/assets/logos/1775504156918-COE.png",
+      "members": [
+        "Haku",
+        "セドリック",
+        "God Kaba!?",
+        "Natch",
+        "Vanelopea",
+        "lella.gg"
+      ]
+    },
+    {
+      "name": "Peralta Wifi Vendo",
+      "logo": "/assets/logos/1775503982329-no_team.png",
+      "orgLogo": "/assets/logos/1775504159383-COE.png",
+      "members": [
+        "Sᴛʀʏɢᴡʀʏ.",
+        "OutcAst DemOn",
+        "kwkwkw",
+        "Kenshi",
+        "pac_#",
+        "isights"
+      ]
+    },
+    {
+      "name": "ARKIMEDES ",
+      "logo": "/assets/logos/1775553331994-ARKIMEDES2.png",
+      "orgLogo": "/assets/logos/1775372108724-EE.png",
+      "members": [
+        "Eulerr",
+        "Break",
+        "Sany",
+        "Off script.",
+        "WAYNOA",
+        "MerukiGeru"
+      ]
+    },
+    {
+      "name": "Roblox Players",
+      "logo": "/assets/logos/1775503990714-no_team.png",
+      "orgLogo": "/assets/logos/1775372246320-EE.png",
+      "members": [
+        "Carlos Yulo",
+        "Chann",
+        "Belial.",
+        "Lancey,",
+        " LANLAN PAKA'G LAPUK",
+        "Conrad Fisher"
+      ]
+    },
+    {
+      "name": "Akatsuki",
+      "logo": "/assets/logos/1775503860403-Akatsuki.png",
+      "orgLogo": "/assets/logos/1775372283272-EE.png",
+      "members": [
+        "aeliazxc",
+        "Flins",
+        "janzai",
+        "Rui en",
+        "Tobi",
+        ""
+      ]
+    },
+    {
+      "name": "Onyek Esports",
+      "logo": "/assets/logos/1775503996682-no_team.png",
+      "orgLogo": "/assets/logos/1775372328828-EE.png",
+      "members": [
+        "masig",
+        "Andrei ",
+        "saytas",
+        "barete",
+        "lamit",
+        "ayo"
+      ]
+    },
+    {
+      "name": "trybai",
+      "logo": "/assets/logos/1775504004505-no_team.png",
+      "orgLogo": "/assets/logos/1775372383262-ECE.png",
+      "members": [
+        "karurogg",
+        "Jerold",
+        "Yobeee",
+        "Rave",
+        "Hirai momo",
+        "Arushin アルシン"
+      ]
+    },
+    {
+      "name": "Owen the Explorer",
+      "logo": "/assets/logos/1775504007735-no_team.png",
+      "orgLogo": "/assets/logos/1775372424048-ECE.png",
+      "members": [
+        " 複|•ᴊᴀʀ.✓",
+        "Taki",
+        "Yuno",
+        "pumatay ng taki",
+        "Scyruist",
+        "liam the baby"
+      ]
+    }
+  ],
+  "upcomingMatches": [
+    {
+      "matchNumber": 1,
+      "teamA": {
+        "name": "Alejandro's Lechon Manok",
+        "logo": "/assets/logos/1775504041030-Akatsuki.png"
+      },
+      "teamB": {
+        "name": "First Round Exit",
+        "logo": "/assets/logos/1775553258762-ARKIMEDES.png"
+      }
+    },
+    {
+      "matchNumber": 2,
+      "teamA": {
+        "name": "NEXPO|",
+        "logo": "/assets/logos/1775504048004-SUNITO_-_TEAMLogo.png"
+      },
+      "teamB": {
+        "name": "Team Bangan",
+        "logo": "/assets/logos/1775553264583-ARKIMEDES.png"
+      }
+    },
+    {
+      "matchNumber": 3,
+      "teamA": {
+        "name": "Onyek Esports",
+        "logo": "/assets/logos/1775504055477-no_team.png"
+      },
+      "teamB": {
+        "name": "Punuan sa Saging Lover",
+        "logo": "/assets/logos/1775504058232-Akatsuki.png"
+      }
+    }
+  ],
+  "ingame": {
+    "team1": {
+      "name": "BIRSIKULO UNO: Poncio Birhilyo",
+      "logo": "/assets/logos/1775503751234-PONCIO_BIRHILYU.png",
+      "orgLogo": "/assets/logos/1775504153982-COE.png"
+    },
+    "team2": {
+      "name": "Akatsuki",
+      "logo": "/assets/logos/1775503860403-Akatsuki.png",
+      "orgLogo": "/assets/logos/1775372283272-EE.png"
+    },
+    "team1Wins": 1,
+    "team2Wins": 1,
+    "round": "d-playoffs",
+    "day": "DAY1",
+    "bestOf": 3
+  },
+  "sponsors": [
+    {
+      "name": "CC Logo",
+      "logo": "/assets/sponsors/1775368808982-CC_Logo.png"
+    },
+    {
+      "name": "CEIS Official Seal logo Revised",
+      "logo": "/assets/sponsors/1775368819679-CEIS_Official_Seal_logo_Revised.png"
+    }
+  ]
+}

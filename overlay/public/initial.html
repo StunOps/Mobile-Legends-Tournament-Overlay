@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, initial-scale=1">
+  <title>ML Live — Initial Overlay</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <div class="overlay">
+
+    <!-- Subtle animated background shapes -->
+    <div class="bg-objects" id="bgObjects"></div>
+
+    <!-- ===== TAGLINE (top-left) ===== -->
+    <h1 class="tagline" data-text="WE MAKE IT WORK">
+      WE MAKE IT
+      <span class="flip-container">
+        <span class="flip-word active">WORK</span>
+        <span class="flip-word">RUN</span>
+        <span class="flip-word">POSSIBLE</span>
+      </span>
+    </h1>
+
+    <!-- ===== EVENT INFO (top-right, editable) ===== -->
+    <div class="event-day" id="eventDay">DAY 1</div>
+    <div class="event-round" id="eventRound">PLAYOFFS</div>
+
+    <!-- ===== ROTATING GEARS (behind team card) ===== -->
+    <div class="gear-bg">
+      <svg class="gear gear-lg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 32 L54 24 L58 32 L66 28 L64 36 L72 36 L68 44 L76 48 L70 52 L76 58 L68 58 L72 66 L64 64 L66 72 L58 68 L54 76 L50 68 L46 76 L42 68 L34 72 L36 64 L28 66 L32 58 L24 58 L30 52 L24 48 L32 44 L28 36 L36 36 L34 28 L42 32 L46 24 Z" fill="#F7941D"/>
+        <circle cx="50" cy="50" r="12" fill="#1A1A1A"/>
+      </svg>
+      <svg class="gear gear-sm" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 32 L54 24 L58 32 L66 28 L64 36 L72 36 L68 44 L76 48 L70 52 L76 58 L68 58 L72 66 L64 64 L66 72 L58 68 L54 76 L50 68 L46 76 L42 68 L34 72 L36 64 L28 66 L32 58 L24 58 L30 52 L24 48 L32 44 L28 36 L36 36 L34 28 L42 32 L46 24 Z" fill="#F7941D"/>
+        <circle cx="50" cy="50" r="12" fill="#1A1A1A"/>
+      </svg>
+    </div>
+
+    <!-- ===== TEAM CARD (right panel) ===== -->
+    <div class="team-card" id="teamShowcase">
+      <img class="tc-logo" id="teamLogo" src="" alt="">
+      <h3 class="tc-name" id="teamName">TEAM NAME</h3>
+      <img class="tc-org" id="teamOrg" src="" alt="">
+      <div class="tc-members" id="teamMembers">
+        <span>PLAYER 1</span>
+        <span>PLAYER 2</span>
+        <span>PLAYER 3</span>
+        <span>PLAYER 4</span>
+        <span>PLAYER 5</span>
+      </div>
+    </div>
+
+    <!-- ===== UPCOMING MATCHES (bottom-left) ===== -->
+    <div class="upcoming" id="upcomingMatches"></div>
+
+    <!-- ===== SPONSOR LOGOS (bottom bar) ===== -->
+    <div class="sponsors" id="sponsorLogos"></div>
+
+  </div>
+  <script src="/js/overlay.js"></script>
+</body>
+
+</html>

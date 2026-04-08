@@ -1,0 +1,61 @@
+/* ============================================================
+   ML LIVE — TURTLE / LORD OVERLAY
+   Transparent 1920×1080 canvas. Video appears at:
+     - Right side for SPAWN
+     - Bottom center for SLAIN
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* --- Video Container (hidden by default) --- */
+.tl-video-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+
+.tl-video-container.tl-visible {
+  opacity: 1;
+}
+
+/* --- Position: Right side (for Spawn) --- */
+.tl-video-container.tl-pos-right {
+  top: 30%;
+  right: 0px;
+  transform: translateY(-50%);
+  width: 1500px;
+  height: 1500px;
+}
+
+/* --- Position: Bottom center (for Slain) --- */
+.tl-video-container.tl-pos-bottom {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1200px;
+  height: 600px;
+}
+
+/* --- Video element --- */
+.tl-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

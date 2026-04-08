@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ML Live — Turtle / Lord Panel</title>
+  <link rel="stylesheet" href="/css/tl-panel.css">
+</head>
+
+<body>
+  <div class="tl-panel">
+    <h1 class="tl-title">🐢 Turtle & Lord 🔥</h1>
+
+    <!-- Spawn Buttons -->
+    <div class="tl-section">
+      <h2 class="tl-section-title">Spawn</h2>
+      <div class="tl-btn-row">
+        <button class="tl-btn tl-btn-spawn" data-video="/assets/turte_lord/turtlespawn.webm" data-type="spawn">
+          🐢 Turtle Spawn
+        </button>
+        <button class="tl-btn tl-btn-spawn" data-video="/assets/turte_lord/lordspawnn.webm" data-type="spawn">
+          🔥 Lord Spawn
+        </button>
+      </div>
+    </div>
+
+    <!-- Slain Buttons -->
+    <div class="tl-section">
+      <h2 class="tl-section-title">Slain</h2>
+      <div class="tl-btn-row">
+        <button class="tl-btn tl-btn-blue" data-video="/assets/turte_lord/blueturtleslain.webm" data-type="slain">
+          🔵 Blue Turtle Slain
+        </button>
+        <button class="tl-btn tl-btn-blue" data-video="/assets/turte_lord/bluelordslain.webm" data-type="slain">
+          🔵 Blue Lord Slain
+        </button>
+      </div>
+      <div class="tl-btn-row">
+        <button class="tl-btn tl-btn-red" data-video="/assets/turte_lord/redturtleslain.webm" data-type="slain">
+          🔴 Red Turtle Slain
+        </button>
+        <button class="tl-btn tl-btn-red" data-video="/assets/turte_lord/redlordslain.webm" data-type="slain">
+          🔴 Red Lord Slain
+        </button>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="tl-status" id="tlStatus">Ready</div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tl-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const video = btn.dataset.video;
+        const type = btn.dataset.type;
+
+        try {
+          const res = await fetch('/api/tl-trigger', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ video, type })
+          });
+          const data = await res.json();
+          const status = document.getElementById('tlStatus');
+          if (data.success) {
+            status.textContent = `▶ Playing: ${btn.textContent.trim()}`;
+            status.className = 'tl-status tl-status-playing';
+          } else {
+            status.textContent = '❌ Error';
+            status.className = 'tl-status tl-status-error';
+          }
+        } catch (err) {
+          console.error(err);
+          const status = document.getElementById('tlStatus');
+          status.textContent = '❌ Connection error';
+          status.className = 'tl-status tl-status-error';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+/* ============================================================
+   ML LIVE — TURTLE / LORD CONTROL PANEL
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #0f0f0f;
+  color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.tl-panel {
+  background: #1a1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  width: 380px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.tl-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #00d2ff, #f7941d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tl-section {
+  margin-bottom: 16px;
+}
+
+.tl-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.tl-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tl-btn {
+  flex: 1;
+  padding: 12px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: #252540;
+  color: #e0e0e0;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.tl-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tl-btn:active {
+  transform: translateY(0);
+}
+
+/* Spawn buttons — green accent */
+.tl-btn-spawn {
+  border-color: rgba(0, 210, 100, 0.3);
+}
+
+.tl-btn-spawn:hover {
+  background: rgba(0, 210, 100, 0.15);
+  border-color: rgba(0, 210, 100, 0.6);
+}
+
+/* Blue team buttons */
+.tl-btn-blue {
+  border-color: rgba(0, 150, 255, 0.3);
+}
+
+.tl-btn-blue:hover {
+  background: rgba(0, 150, 255, 0.15);
+  border-color: rgba(0, 150, 255, 0.6);
+}
+
+/* Red team buttons */
+.tl-btn-red {
+  border-color: rgba(255, 80, 80, 0.3);
+}
+
+.tl-btn-red:hover {
+  background: rgba(255, 80, 80, 0.15);
+  border-color: rgba(255, 80, 80, 0.6);
+}
+
+/* Status bar */
+.tl-status {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  margin-top: 4px;
+  transition: all 0.3s ease;
+}
+
+.tl-status-playing {
+  color: #00d274;
+  background: rgba(0, 210, 100, 0.08);
+}
+
+.tl-status-error {
+  color: #ff5050;
+  background: rgba(255, 80, 80, 0.08);
+}

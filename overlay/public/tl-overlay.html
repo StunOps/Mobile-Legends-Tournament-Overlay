@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, initial-scale=1">
+  <title>ML Live — Turtle / Lord Overlay</title>
+  <link rel="stylesheet" href="/css/tl-overlay.css">
+</head>
+
+<body>
+  <!-- Video container — position changes based on spawn vs slain -->
+  <div class="tl-video-container" id="tlVideoContainer">
+    <video class="tl-video" id="tlVideo" muted playsinline></video>
+  </div>
+
+  <script>
+    const POLL_INTERVAL = 500; // Fast polling for responsive triggers
+    let lastTriggerId = null;
+
+    const container = document.getElementById('tlVideoContainer');
+    const video = document.getElementById('tlVideo');
+
+    // Poll for new video triggers
+    setInterval(async () => {
+      try {
+        const res = await fetch('/api/tl-status');
+        const data = await res.json();
+
+        if (data.triggerId && data.triggerId !== lastTriggerId) {
+          lastTriggerId = data.triggerId;
+          playVideo(data.video, data.type);
+        }
+      } catch (err) {
+        // silent
+      }
+    }, POLL_INTERVAL);
+
+    function playVideo(src, type) {
+      // Set position based on type
+      container.className = 'tl-video-container';
+      if (type === 'spawn') {
+        container.classList.add('tl-pos-right');
+      } else {
+        container.classList.add('tl-pos-bottom');
+      }
+
+      // Load and play
+      video.src = src;
+      video.load();
+
+      container.classList.add('tl-visible');
+
+      video.play().catch(err => console.warn('Playback error:', err));
+
+      // Hide when video ends
+      video.onended = () => {
+        container.classList.remove('tl-visible');
+        // Notify server that playback finished
+        fetch('/api/tl-clear', { method: 'POST' }).catch(() => {});
+      };
+    }
+  </script>
+</body>
+
+</html>

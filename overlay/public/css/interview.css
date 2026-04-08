@@ -1,0 +1,386 @@
+/* ============================================================
+   ML LIVE — INTERVIEW OVERLAY STYLES
+
+   All positions are ABSOLUTE on a 1920×1080 canvas.
+   Background: Interview Overlay.png
+   ============================================================ */
+
+@font-face {
+  font-family: "High Speed";
+  src:
+    url("/fonts/HighSpeed.ttf") format("truetype"),
+    url("/fonts/HighSpeed.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&display=swap");
+
+:root {
+  --orange: #f7941d;
+  --gold: #fcb300;
+  --black: #1a1a1a;
+  --white: #ffffff;
+  --font: "High Speed", "Bebas Neue", "Oswald", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.iv-overlay {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background: url("/assets/Interview Overlay.png") no-repeat top left / 1920px 1080px;
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+/* ============================================================
+   E-FEST LOGO — TOP CENTER
+   Positioned at the top-center of the interview frame.
+   The template already has a notch/area for this.
+   ============================================================ */
+
+.iv-efest-logo {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  z-index: 15;
+  animation:
+    ivEfestAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both,
+    ivEfestFloat 4s ease-in-out 1.6s infinite;
+}
+
+.iv-efest-shine {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  z-index: 16;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 50%;
+  animation:
+    ivEfestAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both,
+    ivEfestFloat 4s ease-in-out 1.6s infinite;
+}
+
+.iv-efest-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 40px;
+  height: 200%;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.15) 70%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  animation: ivEfestShine 4s ease-in-out 1.6s infinite;
+}
+
+/* ============================================================
+   MATCH STANDING AREA — BOTTOM CENTER
+   The "MATCH STANDING" label is baked into the PNG template.
+   The label area sits roughly at bottom: 100–145px range.
+   Below it we place team logos + names + score.
+   ============================================================ */
+
+.iv-match-standing {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  z-index: 10;
+}
+
+/* --- Individual Team Block --- */
+.iv-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  margin-top: -20px;
+}
+
+.iv-team-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+
+.iv-team-logo[src=""] {
+  display: none;
+}
+
+.iv-team-name {
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--black);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  max-width: 170px;
+  overflow-wrap: break-word;
+
+  /* Multiline Ellipsis: Limit to 2 lines max */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- Score Section (Center) --- */
+.iv-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-width: 280px;
+  margin-top: -25px;
+}
+
+.iv-score-num {
+  font-size: 120px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--black);
+  letter-spacing: 2px;
+  line-height: 1;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.iv-score-dash {
+  font-size: 50px;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1;
+  opacity: 0.4;
+  margin-top: 5px;
+}
+
+/* ============================================================
+   SPONSORS — BOTTOM RIGHT
+   Positioned over the "SPONSORS" label area in the template.
+   ============================================================ */
+
+.iv-sponsors {
+  position: absolute;
+  bottom: 22px;
+  right: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  width: 200px;
+  height: 55px;
+}
+
+.iv-sponsors img {
+  max-height: 55px;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+/* Sponsor Fade Transitions */
+.iv-sponsors img.fade-enter {
+  animation: ivSponsorFadeIn 1s ease-out forwards;
+}
+
+.iv-sponsors img.fade-exit {
+  animation: ivSponsorFadeOut 1s ease-in forwards;
+}
+
+@keyframes ivSponsorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ivSponsorFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+}
+
+/* ============================================================
+   ENTRANCE ANIMATIONS
+   ============================================================ */
+
+.iv-team1 {
+  animation: ivSlideLeft 0.6s ease-out both;
+}
+
+.iv-team2 {
+  animation: ivSlideRight 0.6s ease-out both;
+}
+
+.iv-score {
+  animation: ivScaleIn 0.5s ease-out 0.3s both;
+}
+
+.iv-sponsors {
+  animation: ivFadeIn 0.8s ease-out 0.5s both;
+}
+
+@keyframes ivSlideLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes ivSlideRight {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes ivScaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ivFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   E-FEST LOGO ANIMATIONS
+   Same 3-phase animation as In-Game overlay
+   ============================================================ */
+
+/* Phase 1: APPEAR — Logo materialises with glow burst */
+@keyframes ivEfestAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.3);
+    filter: drop-shadow(0 0 0px rgba(252, 179, 0, 0)) brightness(1);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.12);
+    filter: drop-shadow(0 0 30px rgba(252, 179, 0, 0.9)) brightness(1.6);
+  }
+
+  80% {
+    transform: translateX(-50%) scale(0.96);
+    filter: drop-shadow(0 0 12px rgba(252, 179, 0, 0.4)) brightness(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    filter: drop-shadow(0 0 6px rgba(252, 179, 0, 0.2)) brightness(1);
+  }
+}
+
+/* Phase 2: FLOAT — Gentle hovering with glow pulse */
+@keyframes ivEfestFloat {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    filter: drop-shadow(0 0 6px rgba(252, 179, 0, 0.15)) brightness(1);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-6px);
+    filter: drop-shadow(0 0 18px rgba(252, 179, 0, 0.5)) brightness(1.1);
+  }
+}
+
+/* Phase 3: SHINE — Diagonal light-band sweep */
+@keyframes ivEfestShine {
+  0% {
+    left: -80%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  60% {
+    left: 180%;
+    opacity: 1;
+  }
+
+  70%,
+  100% {
+    left: 180%;
+    opacity: 0;
+  }
+}
