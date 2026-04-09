@@ -504,3 +504,38 @@ function showToast(msg) {
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2000);
 }
+
+// ============================================================
+//  GAME TIMER CONTROLS
+// ============================================================
+
+async function timerStart() {
+  await fetch('/api/timer/start', { method: 'POST' });
+  showToast('Timer started!');
+}
+
+async function timerPause() {
+  await fetch('/api/timer/pause', { method: 'POST' });
+  showToast('Timer paused!');
+}
+
+async function timerReset() {
+  await fetch('/api/timer/reset', { method: 'POST' });
+  showToast('Timer reset!');
+}
+
+// Poll timer for admin display
+setInterval(async () => {
+  try {
+    const res = await fetch('/api/timer');
+    const data = await res.json();
+    const el = document.getElementById('admin-timer-display');
+    if (el) {
+      const mins = Math.floor((data.elapsed || 0) / 60);
+      const secs = Math.floor((data.elapsed || 0) % 60);
+      el.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+  } catch (err) {
+    // silent
+  }
+}, 500);

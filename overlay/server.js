@@ -94,6 +94,39 @@ app.post('/api/tl-clear', (req, res) => {
   res.json({ success: true });
 });
 
+// --- In-Game Timer ---
+let timerState = { running: false, startedAt: null, elapsed: 0 };
+
+app.get('/api/timer', (req, res) => {
+  let elapsed = timerState.elapsed;
+  if (timerState.running && timerState.startedAt) {
+    elapsed += (Date.now() - timerState.startedAt) / 1000;
+  }
+  res.json({ running: timerState.running, elapsed });
+});
+
+app.post('/api/timer/start', (req, res) => {
+  if (!timerState.running) {
+    timerState.running = true;
+    timerState.startedAt = Date.now();
+  }
+  res.json({ success: true });
+});
+
+app.post('/api/timer/pause', (req, res) => {
+  if (timerState.running) {
+    timerState.elapsed += (Date.now() - timerState.startedAt) / 1000;
+    timerState.running = false;
+    timerState.startedAt = null;
+  }
+  res.json({ success: true });
+});
+
+app.post('/api/timer/reset', (req, res) => {
+  timerState = { running: false, startedAt: null, elapsed: 0 };
+  res.json({ success: true });
+});
+
 app.listen(PORT, () => {
   console.log(`\n  🎮  ML Live Overlay Server`);
   console.log(`  ─────────────────────────`);

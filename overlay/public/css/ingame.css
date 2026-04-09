@@ -54,6 +54,35 @@ body {
 }
 
 /* ============================================================
+   GAME TIMER — CENTER
+   ============================================================ */
+
+/* ── Timer Display ──
+   Positioned center of the overlay, below the E-Fest logo.
+   Uses text-align: center so both "0:00" and "00:00" stay centered.
+   ADJUST: top, left, width, font-size                         */
+.ig-timer {
+  position: absolute;
+  /* TO ADJUST VERTICAL POSITION: Change the 'top' value below (e.g., top: 30px;) */
+  top: 20px;
+
+  /* TO ADJUST HORIZONTAL POSITION: Change the 'left' value below. 
+     Currently 50% keeps it exactly in the middle. */
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-align: center;
+  min-width: 80px;
+  z-index: 20;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ============================================================
    TEAM 1 — LEFT SIDE
    ============================================================ */
 
@@ -283,14 +312,12 @@ body {
   left: -80%;
   width: 40px;
   height: 200%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.15) 30%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.15) 70%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.15) 70%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-20deg);
   animation: efestShine 4s ease-in-out 1.6s infinite;
 }
@@ -442,12 +469,12 @@ body {
   /* Phase 1: Appear (0–1.2s) — scale from 0, fade in with a glow burst */
   animation:
     efestAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both,
-    efestFloat  4s   ease-in-out 1.6s infinite;
+    efestFloat 4s ease-in-out 1.6s infinite;
 }
 
 .ig-efest-shine {
   animation: efestAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both,
-             efestFloat  4s   ease-in-out 1.6s infinite;
+    efestFloat 4s ease-in-out 1.6s infinite;
 }
 
 .ig-match-info {
@@ -500,15 +527,18 @@ body {
     transform: scale(0.3);
     filter: drop-shadow(0 0 0px rgba(252, 179, 0, 0)) brightness(1);
   }
+
   60% {
     opacity: 1;
     transform: scale(1.12);
     filter: drop-shadow(0 0 30px rgba(252, 179, 0, 0.9)) brightness(1.6);
   }
+
   80% {
     transform: scale(0.96);
     filter: drop-shadow(0 0 12px rgba(252, 179, 0, 0.4)) brightness(1.15);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -519,10 +549,13 @@ body {
 /* ── Phase 2: FLOAT ──
    Gentle hovering with a subtle glow pulse. 4s loop. */
 @keyframes efestFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
     filter: drop-shadow(0 0 6px rgba(252, 179, 0, 0.15)) brightness(1);
   }
+
   50% {
     transform: translateY(-6px);
     filter: drop-shadow(0 0 18px rgba(252, 179, 0, 0.5)) brightness(1.1);
@@ -536,14 +569,18 @@ body {
     left: -80%;
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   60% {
     left: 180%;
     opacity: 1;
   }
-  70%, 100% {
+
+  70%,
+  100% {
     left: 180%;
     opacity: 0;
   }

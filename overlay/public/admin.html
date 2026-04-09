@@ -29,6 +29,9 @@
       border-bottom: 3px solid var(--orange);
       padding: 16px 32px;
       display: flex; align-items: center; justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .admin-header h1 {
       font-size: 24px; letter-spacing: 4px; color: var(--orange);
@@ -44,6 +47,9 @@
     /* Tabs */
     .tabs {
       display: flex; background: var(--black); border-bottom: 1px solid var(--grey);
+      position: sticky;
+      top: 59px;
+      z-index: 99;
     }
     .tab {
       padding: 12px 32px; font-size: 15px; letter-spacing: 2px;
@@ -332,6 +338,17 @@
       <div class="form-row">
         <button class="btn-add" style="width:auto;padding:10px 24px;border-color:var(--orange);color:var(--orange);" onclick="igResetWins()">🔄 RESET WINS</button>
         <button class="btn-add" style="width:auto;padding:10px 24px;border-color:var(--orange);color:var(--orange);" onclick="igSwapTeams()">🔁 SWAP TEAMS</button>
+      </div>
+    </div>
+
+    <!-- Game Timer -->
+    <div class="form-section">
+      <h3>⏱️ GAME TIMER</h3>
+      <div class="form-row" style="align-items:center;gap:16px;">
+        <span id="admin-timer-display" style="font-size:32px;color:var(--orange);letter-spacing:3px;min-width:80px;text-align:center;">0:00</span>
+        <button class="btn-add" style="width:auto;padding:10px 24px;border-color:#00d274;color:#00d274;" onclick="timerStart()">▶ START</button>
+        <button class="btn-add" style="width:auto;padding:10px 24px;border-color:#f0c040;color:#f0c040;" onclick="timerPause()">⏸ PAUSE</button>
+        <button class="btn-add" style="width:auto;padding:10px 24px;border-color:#e74c3c;color:#e74c3c;" onclick="timerReset()">⏹ RESET</button>
       </div>
     </div>
 

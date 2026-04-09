@@ -12,7 +12,30 @@ const POLL_INTERVAL = 2000;
 document.addEventListener('DOMContentLoaded', () => {
   fetchData();
   setInterval(fetchData, POLL_INTERVAL);
+  // Timer polling (faster for smooth display)
+  pollTimer();
+  setInterval(pollTimer, 500);
 });
+
+// --- Timer Polling ---
+async function pollTimer() {
+  try {
+    const res = await fetch('/api/timer');
+    const data = await res.json();
+    const el = document.getElementById('igTimer');
+    if (el) {
+      el.textContent = formatTimer(data.elapsed || 0);
+    }
+  } catch (err) {
+    // silent
+  }
+}
+
+function formatTimer(totalSeconds) {
+  const mins = Math.floor(totalSeconds / 60);
+  const secs = Math.floor(totalSeconds % 60);
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
 
 // --- Data Fetching ---
 async function fetchData() {
